@@ -36,6 +36,8 @@ rust_binary(
       "clone-impls",
       "default",
       "derive",
+      "extra-traits",
+      "full",
       "parsing",
       "printing",
       "proc-macro",
@@ -65,6 +67,8 @@ genrule(
         + " export CARGO_FEATURE_CLONE_IMPLS=1;"
         + " export CARGO_FEATURE_DEFAULT=1;"
         + " export CARGO_FEATURE_DERIVE=1;"
+        + " export CARGO_FEATURE_EXTRA_TRAITS=1;"
+        + " export CARGO_FEATURE_FULL=1;"
         + " export CARGO_FEATURE_PARSING=1;"
         + " export CARGO_FEATURE_PRINTING=1;"
         + " export CARGO_FEATURE_PROC_MACRO=1;"
@@ -98,6 +102,8 @@ rust_library(
         "clone-impls",
         "default",
         "derive",
+        "extra-traits",
+        "full",
         "parsing",
         "printing",
         "proc-macro",

@@ -12,7 +12,7 @@ package(default_visibility = [
 ])
 
 licenses([
-  "notice", # "MIT,Apache-2.0"
+  "notice", # "MIT"
 ])
 
 load(
@@ -26,50 +26,28 @@ load(
 # Unsupported target "build-script-build" with type "custom-build" omitted
 
 rust_library(
-    name = "winapi",
+    name = "wayland_protocols",
     crate_root = "src/lib.rs",
     crate_type = "lib",
     edition = "2015",
     srcs = glob(["**/*.rs"]),
     deps = [
+        "@raze__bitflags__1_0_4//:bitflags",
+        "@raze__wayland_client__0_21_11//:wayland_client",
+        "@raze__wayland_commons__0_21_11//:wayland_commons",
+        "@raze__wayland_sys__0_21_11//:wayland_sys",
     ],
     rustc_flags = [
         "--cap-lints=allow",
     ],
-    version = "0.3.6",
+    version = "0.21.11",
     crate_features = [
-        "basetsd",
-        "combaseapi",
-        "consoleapi",
-        "dbghelp",
-        "dwmapi",
-        "errhandlingapi",
-        "fileapi",
-        "handleapi",
-        "hidusage",
-        "libloaderapi",
-        "memoryapi",
-        "minwindef",
-        "ntsecapi",
-        "ntstatus",
-        "objbase",
-        "ole2",
-        "processenv",
-        "processthreadsapi",
-        "profileapi",
-        "shellapi",
-        "shellscalingapi",
-        "shobjidl_core",
-        "std",
-        "sysinfoapi",
-        "unknwnbase",
-        "winbase",
-        "wincon",
-        "windowsx",
-        "winerror",
-        "wingdi",
-        "winnt",
-        "winuser",
+        "client",
+        "native_client",
+        "native_lib",
+        "unstable_protocols",
+        "wayland-client",
+        "wayland-sys",
     ],
 )
 

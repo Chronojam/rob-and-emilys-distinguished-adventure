@@ -12,7 +12,7 @@ package(default_visibility = [
 ])
 
 licenses([
-  "notice", # "MIT,Apache-2.0"
+  "restricted", # "Unlicense OR MIT"
 ])
 
 load(
@@ -23,10 +23,11 @@ load(
 )
 
 
+# Unsupported target "bench" with type "bench" omitted
 # Unsupported target "build-script-build" with type "custom-build" omitted
 
 rust_library(
-    name = "winapi",
+    name = "byteorder",
     crate_root = "src/lib.rs",
     crate_type = "lib",
     edition = "2015",
@@ -36,40 +37,10 @@ rust_library(
     rustc_flags = [
         "--cap-lints=allow",
     ],
-    version = "0.3.6",
+    version = "1.3.1",
     crate_features = [
-        "basetsd",
-        "combaseapi",
-        "consoleapi",
-        "dbghelp",
-        "dwmapi",
-        "errhandlingapi",
-        "fileapi",
-        "handleapi",
-        "hidusage",
-        "libloaderapi",
-        "memoryapi",
-        "minwindef",
-        "ntsecapi",
-        "ntstatus",
-        "objbase",
-        "ole2",
-        "processenv",
-        "processthreadsapi",
-        "profileapi",
-        "shellapi",
-        "shellscalingapi",
-        "shobjidl_core",
+        "default",
         "std",
-        "sysinfoapi",
-        "unknwnbase",
-        "winbase",
-        "wincon",
-        "windowsx",
-        "winerror",
-        "wingdi",
-        "winnt",
-        "winuser",
     ],
 )
 

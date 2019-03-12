@@ -26,50 +26,23 @@ load(
 # Unsupported target "build-script-build" with type "custom-build" omitted
 
 rust_library(
-    name = "winapi",
+    name = "num_integer",
     crate_root = "src/lib.rs",
     crate_type = "lib",
     edition = "2015",
     srcs = glob(["**/*.rs"]),
     deps = [
+        "@raze__num_traits__0_2_6//:num_traits",
     ],
     rustc_flags = [
         "--cap-lints=allow",
     ],
-    version = "0.3.6",
+    version = "0.1.39",
     crate_features = [
-        "basetsd",
-        "combaseapi",
-        "consoleapi",
-        "dbghelp",
-        "dwmapi",
-        "errhandlingapi",
-        "fileapi",
-        "handleapi",
-        "hidusage",
-        "libloaderapi",
-        "memoryapi",
-        "minwindef",
-        "ntsecapi",
-        "ntstatus",
-        "objbase",
-        "ole2",
-        "processenv",
-        "processthreadsapi",
-        "profileapi",
-        "shellapi",
-        "shellscalingapi",
-        "shobjidl_core",
+        "num-traits",
         "std",
-        "sysinfoapi",
-        "unknwnbase",
-        "winbase",
-        "wincon",
-        "windowsx",
-        "winerror",
-        "wingdi",
-        "winnt",
-        "winuser",
     ],
 )
 
+# Unsupported target "roots" with type "bench" omitted
+# Unsupported target "roots" with type "test" omitted

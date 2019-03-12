@@ -10,6 +10,8 @@ path = "fake_lib.rs"
 
 [dependencies]
 legion = "0.1.1"
+conrod_core = "0.63.0"
+conrod_winit = "0.63.0"
 
 [raze]
 # The WORKSPACE relative path to the Cargo.toml working directory.

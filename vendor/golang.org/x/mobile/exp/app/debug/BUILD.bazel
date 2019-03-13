@@ -1,0 +1,27 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "go_default_library",
+    srcs = ["fps.go"],
+    importmap = "github.com/example/project/vendor/golang.org/x/mobile/exp/app/debug",
+    importpath = "golang.org/x/mobile/exp/app/debug",
+    visibility = ["//visibility:public"],
+    deps = select({
+        "@io_bazel_rules_go//go/platform:darwin": [
+            "//vendor/golang.org/x/mobile/event/size:go_default_library",
+            "//vendor/golang.org/x/mobile/exp/gl/glutil:go_default_library",
+            "//vendor/golang.org/x/mobile/geom:go_default_library",
+        ],
+        "@io_bazel_rules_go//go/platform:linux": [
+            "//vendor/golang.org/x/mobile/event/size:go_default_library",
+            "//vendor/golang.org/x/mobile/exp/gl/glutil:go_default_library",
+            "//vendor/golang.org/x/mobile/geom:go_default_library",
+        ],
+        "@io_bazel_rules_go//go/platform:windows": [
+            "//vendor/golang.org/x/mobile/event/size:go_default_library",
+            "//vendor/golang.org/x/mobile/exp/gl/glutil:go_default_library",
+            "//vendor/golang.org/x/mobile/geom:go_default_library",
+        ],
+        "//conditions:default": [],
+    }),
+)

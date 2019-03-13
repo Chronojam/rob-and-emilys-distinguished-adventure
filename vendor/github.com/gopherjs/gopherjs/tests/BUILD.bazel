@@ -1,0 +1,25 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "go_default_library",
+    srcs = ["doc.go"],
+    importmap = "github.com/example/project/vendor/github.com/gopherjs/gopherjs/tests",
+    importpath = "github.com/gopherjs/gopherjs/tests",
+    visibility = ["//visibility:public"],
+)
+
+go_test(
+    name = "go_default_test",
+    srcs = [
+        "alias_test.go",
+        "copy_test.go",
+        "deferblock_test.go",
+        "gorepo_test.go",
+        "goroutine_test.go",
+        "lowlevel_test.go",
+        "misc_test.go",
+        "sort_test.go",
+    ],
+    embed = [":go_default_library"],
+    deps = ["//vendor/github.com/gopherjs/gopherjs/tests/otherpkg:go_default_library"],
+)

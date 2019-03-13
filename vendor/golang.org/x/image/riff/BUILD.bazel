@@ -1,0 +1,18 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "go_default_library",
+    srcs = ["riff.go"],
+    importmap = "github.com/example/project/vendor/golang.org/x/image/riff",
+    importpath = "golang.org/x/image/riff",
+    visibility = ["//visibility:public"],
+)
+
+go_test(
+    name = "go_default_test",
+    srcs = [
+        "example_test.go",
+        "riff_test.go",
+    ],
+    embed = [":go_default_library"],
+)

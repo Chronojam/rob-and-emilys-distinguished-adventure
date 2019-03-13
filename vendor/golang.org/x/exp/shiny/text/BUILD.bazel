@@ -1,0 +1,29 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "go_default_library",
+    srcs = [
+        "caret.go",
+        "text.go",
+    ],
+    importmap = "github.com/example/project/vendor/golang.org/x/exp/shiny/text",
+    importpath = "golang.org/x/exp/shiny/text",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//vendor/golang.org/x/image/font:go_default_library",
+        "//vendor/golang.org/x/image/math/fixed:go_default_library",
+    ],
+)
+
+go_test(
+    name = "go_default_test",
+    srcs = [
+        "example_test.go",
+        "text_test.go",
+    ],
+    embed = [":go_default_library"],
+    deps = [
+        "//vendor/golang.org/x/image/font:go_default_library",
+        "//vendor/golang.org/x/image/math/fixed:go_default_library",
+    ],
+)

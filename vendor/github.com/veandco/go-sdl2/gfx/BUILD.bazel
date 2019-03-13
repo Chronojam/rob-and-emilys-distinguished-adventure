@@ -1,0 +1,27 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "go_default_library",
+    srcs = [
+        "sdl_gfx.go",
+        "sdl_gfx_cgo.go",
+        "sdl_gfx_wrapper.h",
+    ],
+    cgo = True,
+    clinkopts = select({
+        "@io_bazel_rules_go//go/platform:windows": [
+            "-lSDL2 -lSDL2_gfx",
+        ],
+        "//conditions:default": [],
+    }),
+    importmap = "github.com/example/project/vendor/github.com/veandco/go-sdl2/gfx",
+    importpath = "github.com/veandco/go-sdl2/gfx",
+    visibility = ["//visibility:public"],
+    deps = ["//vendor/github.com/veandco/go-sdl2/sdl:go_default_library"],
+)
+
+go_test(
+    name = "go_default_test",
+    srcs = ["sdl_gfx_test.go"],
+    embed = [":go_default_library"],
+)

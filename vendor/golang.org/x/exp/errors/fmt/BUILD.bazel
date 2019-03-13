@@ -1,0 +1,35 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "go_default_library",
+    srcs = [
+        "adaptor.go",
+        "doc.go",
+        "errors.go",
+        "format.go",
+        "print.go",
+        "scan.go",
+    ],
+    importmap = "github.com/example/project/vendor/golang.org/x/exp/errors/fmt",
+    importpath = "golang.org/x/exp/errors/fmt",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//vendor/golang.org/x/exp/errors:go_default_library",
+        "//vendor/golang.org/x/exp/errors/internal:go_default_library",
+    ],
+)
+
+go_test(
+    name = "go_default_test",
+    srcs = [
+        "errors_test.go",
+        "example_test.go",
+        "export_test.go",
+        "fmt_test.go",
+        "format_example_test.go",
+        "scan_test.go",
+        "stringer_test.go",
+    ],
+    embed = [":go_default_library"],
+    deps = ["//vendor/golang.org/x/exp/errors:go_default_library"],
+)

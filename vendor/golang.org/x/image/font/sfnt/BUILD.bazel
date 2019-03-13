@@ -1,0 +1,40 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "go_default_library",
+    srcs = [
+        "cmap.go",
+        "data.go",
+        "gpos.go",
+        "postscript.go",
+        "sfnt.go",
+        "truetype.go",
+    ],
+    importmap = "github.com/example/project/vendor/golang.org/x/image/font/sfnt",
+    importpath = "golang.org/x/image/font/sfnt",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//vendor/golang.org/x/image/font:go_default_library",
+        "//vendor/golang.org/x/image/math/fixed:go_default_library",
+        "@org_golang_x_text//encoding/charmap:go_default_library",
+    ],
+)
+
+go_test(
+    name = "go_default_test",
+    srcs = [
+        "example_test.go",
+        "kern_test.go",
+        "proprietary_test.go",
+        "sfnt_test.go",
+    ],
+    embed = [":go_default_library"],
+    deps = [
+        "//vendor/golang.org/x/image/font:go_default_library",
+        "//vendor/golang.org/x/image/font/gofont/gobold:go_default_library",
+        "//vendor/golang.org/x/image/font/gofont/gomono:go_default_library",
+        "//vendor/golang.org/x/image/font/gofont/goregular:go_default_library",
+        "//vendor/golang.org/x/image/math/fixed:go_default_library",
+        "//vendor/golang.org/x/image/vector:go_default_library",
+    ],
+)

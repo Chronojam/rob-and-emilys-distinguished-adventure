@@ -1,0 +1,54 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_binary", "go_library")
+
+go_library(
+    name = "go_default_library",
+    srcs = [
+        "main.go",
+        "main_x.go",
+    ],
+    importmap = "github.com/example/project/vendor/golang.org/x/mobile/example/basic",
+    importpath = "golang.org/x/mobile/example/basic",
+    visibility = ["//visibility:private"],
+    deps = select({
+        "@io_bazel_rules_go//go/platform:darwin": [
+            "//vendor/golang.org/x/mobile/app:go_default_library",
+            "//vendor/golang.org/x/mobile/event/lifecycle:go_default_library",
+            "//vendor/golang.org/x/mobile/event/paint:go_default_library",
+            "//vendor/golang.org/x/mobile/event/size:go_default_library",
+            "//vendor/golang.org/x/mobile/event/touch:go_default_library",
+            "//vendor/golang.org/x/mobile/exp/app/debug:go_default_library",
+            "//vendor/golang.org/x/mobile/exp/f32:go_default_library",
+            "//vendor/golang.org/x/mobile/exp/gl/glutil:go_default_library",
+            "//vendor/golang.org/x/mobile/gl:go_default_library",
+        ],
+        "@io_bazel_rules_go//go/platform:linux": [
+            "//vendor/golang.org/x/mobile/app:go_default_library",
+            "//vendor/golang.org/x/mobile/event/lifecycle:go_default_library",
+            "//vendor/golang.org/x/mobile/event/paint:go_default_library",
+            "//vendor/golang.org/x/mobile/event/size:go_default_library",
+            "//vendor/golang.org/x/mobile/event/touch:go_default_library",
+            "//vendor/golang.org/x/mobile/exp/app/debug:go_default_library",
+            "//vendor/golang.org/x/mobile/exp/f32:go_default_library",
+            "//vendor/golang.org/x/mobile/exp/gl/glutil:go_default_library",
+            "//vendor/golang.org/x/mobile/gl:go_default_library",
+        ],
+        "@io_bazel_rules_go//go/platform:windows": [
+            "//vendor/golang.org/x/mobile/app:go_default_library",
+            "//vendor/golang.org/x/mobile/event/lifecycle:go_default_library",
+            "//vendor/golang.org/x/mobile/event/paint:go_default_library",
+            "//vendor/golang.org/x/mobile/event/size:go_default_library",
+            "//vendor/golang.org/x/mobile/event/touch:go_default_library",
+            "//vendor/golang.org/x/mobile/exp/app/debug:go_default_library",
+            "//vendor/golang.org/x/mobile/exp/f32:go_default_library",
+            "//vendor/golang.org/x/mobile/exp/gl/glutil:go_default_library",
+            "//vendor/golang.org/x/mobile/gl:go_default_library",
+        ],
+        "//conditions:default": [],
+    }),
+)
+
+go_binary(
+    name = "basic",
+    embed = [":go_default_library"],
+    visibility = ["//visibility:public"],
+)

@@ -1,0 +1,99 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "go_default_library",
+    srcs = [
+        "build.go",
+        "cocoainit_darwin.go",
+        "cocoamonitor_darwin.go",
+        "cocoawindow_darwin.go",
+        "context.go",
+        "error.c",
+        "error.go",
+        "glfw.go",
+        "glfw_context.c",
+        "glfw_egl_context.c",
+        "glfw_glx_context.c",
+        "glfw_init.c",
+        "glfw_input.c",
+        "glfw_linux_joystick.c",
+        "glfw_mach_time.c",
+        "glfw_monitor.c",
+        "glfw_posix_time.c",
+        "glfw_posix_tls.c",
+        "glfw_wgl_context.c",
+        "glfw_win32_init.c",
+        "glfw_win32_monitor.c",
+        "glfw_win32_time.c",
+        "glfw_win32_tls.c",
+        "glfw_win32_window.c",
+        "glfw_window.c",
+        "glfw_winmm_joystick.c",
+        "glfw_wl_init.c",
+        "glfw_wl_monitor.c",
+        "glfw_wl_window.c",
+        "glfw_x11_init.c",
+        "glfw_x11_monitor.c",
+        "glfw_x11_window.c",
+        "glfw_xkb_unicode.c",
+        "input.c",
+        "input.go",
+        "iokitjoystick_darwin.go",
+        "monitor.c",
+        "monitor.go",
+        "native_darwin.go",
+        "native_linbsd.go",
+        "native_windows.go",
+        "nsglcontext_darwin.go",
+        "time.go",
+        "util.go",
+        "window.c",
+        "window.go",
+    ],
+    cgo = True,
+    clinkopts = select({
+        "@io_bazel_rules_go//go/platform:darwin": [
+            "-framework Cocoa -framework OpenGL -framework IOKit -framework CoreVideo",
+        ],
+        "@io_bazel_rules_go//go/platform:freebsd": [
+            "-lGL -lX11 -lXrandr -lXxf86vm -lXi -lXcursor -lm -lXinerama",
+        ],
+        "@io_bazel_rules_go//go/platform:linux": [
+            "-lGL -lX11 -lXrandr -lXxf86vm -lXi -lXcursor -lm -lXinerama -ldl -lrt",
+        ],
+        "@io_bazel_rules_go//go/platform:windows": [
+            "-lopengl32 -lgdi32",
+        ],
+        "//conditions:default": [],
+    }),
+    copts = select({
+        "@io_bazel_rules_go//go/platform:darwin": [
+            "-D_GLFW_COCOA -D_GLFW_NSGL -D_GLFW_USE_CHDIR -D_GLFW_USE_MENUBAR -D_GLFW_USE_RETINA -Wno-deprecated-declarations",
+            "-x objective-c",
+        ],
+        "@io_bazel_rules_go//go/platform:freebsd": [
+            "-D_GLFW_X11 -D_GLFW_GLX -D_GLFW_HAS_GLXGETPROCADDRESSARB -D_GLFW_HAS_DLOPEN",
+        ],
+        "@io_bazel_rules_go//go/platform:linux": [
+            "-D_GLFW_X11 -D_GLFW_GLX",
+        ],
+        "@io_bazel_rules_go//go/platform:windows": [
+            "-D_GLFW_WIN32 -D_GLFW_WGL",
+        ],
+        "//conditions:default": [],
+    }) + select({
+        "@io_bazel_rules_go//go/platform:386": [
+            "-D_GLFW_USE_OPENGL",
+        ],
+        "@io_bazel_rules_go//go/platform:amd64": [
+            "-D_GLFW_USE_OPENGL",
+        ],
+        "@io_bazel_rules_go//go/platform:arm": [
+            "-D_GLFW_USE_GLESV2",
+        ],
+        "//conditions:default": [],
+    }),
+    importmap = "github.com/example/project/vendor/github.com/go-gl/glfw/v3.1/glfw",
+    importpath = "github.com/go-gl/glfw/v3.1/glfw",
+    visibility = ["//visibility:public"],
+)

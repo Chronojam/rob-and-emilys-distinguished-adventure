@@ -1,0 +1,12 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "go_default_library",
+    srcs = ["main.go"],
+    importpath = "github.com/example/project/cmd/game",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//vendor/engo.io/ecs:go_default_library",
+        "//vendor/engo.io/engo:go_default_library",
+    ],
+)

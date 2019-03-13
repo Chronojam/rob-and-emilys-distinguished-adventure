@@ -1,0 +1,28 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "go_default_library",
+    srcs = ["build.go"],
+    importmap = "github.com/example/project/vendor/github.com/gopherjs/gopherjs/build",
+    importpath = "github.com/gopherjs/gopherjs/build",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//vendor/github.com/gopherjs/gopherjs/compiler:go_default_library",
+        "//vendor/github.com/gopherjs/gopherjs/compiler/gopherjspkg:go_default_library",
+        "//vendor/github.com/gopherjs/gopherjs/compiler/natives:go_default_library",
+        "@com_github_fsnotify_fsnotify//:go_default_library",
+        "@com_github_neelance_sourcemap//:go_default_library",
+        "@com_github_shurcool_httpfs//vfsutil:go_default_library",
+        "@org_golang_x_tools//go/buildutil:go_default_library",
+    ],
+)
+
+go_test(
+    name = "go_default_test",
+    srcs = ["build_test.go"],
+    embed = [":go_default_library"],
+    deps = [
+        "@com_github_kisielk_gotool//:go_default_library",
+        "@com_github_shurcool_go//importgraphutil:go_default_library",
+    ],
+)

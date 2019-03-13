@@ -1,0 +1,62 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "go_default_library",
+    srcs = ["glwidget.go"],
+    importmap = "github.com/example/project/vendor/golang.org/x/exp/shiny/widget/glwidget",
+    importpath = "golang.org/x/exp/shiny/widget/glwidget",
+    visibility = ["//visibility:public"],
+    deps = select({
+        "@io_bazel_rules_go//go/platform:darwin": [
+            "//vendor/golang.org/x/exp/shiny/driver/gldriver:go_default_library",
+            "//vendor/golang.org/x/exp/shiny/widget/node:go_default_library",
+            "//vendor/golang.org/x/mobile/gl:go_default_library",
+        ],
+        "@io_bazel_rules_go//go/platform:dragonfly": [
+            "//vendor/golang.org/x/exp/shiny/driver/gldriver:go_default_library",
+            "//vendor/golang.org/x/exp/shiny/widget/node:go_default_library",
+            "//vendor/golang.org/x/mobile/gl:go_default_library",
+        ],
+        "@io_bazel_rules_go//go/platform:freebsd": [
+            "//vendor/golang.org/x/exp/shiny/driver/gldriver:go_default_library",
+            "//vendor/golang.org/x/exp/shiny/widget/node:go_default_library",
+            "//vendor/golang.org/x/mobile/gl:go_default_library",
+        ],
+        "@io_bazel_rules_go//go/platform:linux": [
+            "//vendor/golang.org/x/exp/shiny/driver/gldriver:go_default_library",
+            "//vendor/golang.org/x/exp/shiny/widget/node:go_default_library",
+            "//vendor/golang.org/x/mobile/gl:go_default_library",
+        ],
+        "@io_bazel_rules_go//go/platform:nacl": [
+            "//vendor/golang.org/x/exp/shiny/driver/gldriver:go_default_library",
+            "//vendor/golang.org/x/exp/shiny/widget/node:go_default_library",
+            "//vendor/golang.org/x/mobile/gl:go_default_library",
+        ],
+        "@io_bazel_rules_go//go/platform:netbsd": [
+            "//vendor/golang.org/x/exp/shiny/driver/gldriver:go_default_library",
+            "//vendor/golang.org/x/exp/shiny/widget/node:go_default_library",
+            "//vendor/golang.org/x/mobile/gl:go_default_library",
+        ],
+        "@io_bazel_rules_go//go/platform:openbsd": [
+            "//vendor/golang.org/x/exp/shiny/driver/gldriver:go_default_library",
+            "//vendor/golang.org/x/exp/shiny/widget/node:go_default_library",
+            "//vendor/golang.org/x/mobile/gl:go_default_library",
+        ],
+        "@io_bazel_rules_go//go/platform:plan9": [
+            "//vendor/golang.org/x/exp/shiny/driver/gldriver:go_default_library",
+            "//vendor/golang.org/x/exp/shiny/widget/node:go_default_library",
+            "//vendor/golang.org/x/mobile/gl:go_default_library",
+        ],
+        "@io_bazel_rules_go//go/platform:solaris": [
+            "//vendor/golang.org/x/exp/shiny/driver/gldriver:go_default_library",
+            "//vendor/golang.org/x/exp/shiny/widget/node:go_default_library",
+            "//vendor/golang.org/x/mobile/gl:go_default_library",
+        ],
+        "@io_bazel_rules_go//go/platform:windows": [
+            "//vendor/golang.org/x/exp/shiny/driver/gldriver:go_default_library",
+            "//vendor/golang.org/x/exp/shiny/widget/node:go_default_library",
+            "//vendor/golang.org/x/mobile/gl:go_default_library",
+        ],
+        "//conditions:default": [],
+    }),
+)

@@ -1,0 +1,18 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "go_default_library",
+    srcs = [
+        "colornames.go",
+        "table.go",
+    ],
+    importmap = "github.com/example/project/vendor/golang.org/x/image/colornames",
+    importpath = "golang.org/x/image/colornames",
+    visibility = ["//visibility:public"],
+)
+
+go_test(
+    name = "go_default_test",
+    srcs = ["colornames_test.go"],
+    embed = [":go_default_library"],
+)

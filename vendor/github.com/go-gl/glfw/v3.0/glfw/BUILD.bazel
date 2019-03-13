@@ -1,0 +1,48 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "go_default_library",
+    srcs = [
+        "clipboard.go",
+        "context.go",
+        "error.c",
+        "error.go",
+        "glfw.go",
+        "input.c",
+        "input.go",
+        "monitor.c",
+        "monitor.go",
+        "native_darwin.go",
+        "native_linbsd.go",
+        "native_windows.go",
+        "time.go",
+        "util.go",
+        "window.c",
+        "window.go",
+    ],
+    cgo = True,
+    clinkopts = select({
+        "@io_bazel_rules_go//go/platform:darwin": [
+            "-lglfw3 -framework Cocoa -framework OpenGL -framework IOKit -framework CoreVideo",
+        ],
+        "@io_bazel_rules_go//go/platform:freebsd": [
+            "-lglfw3 -lGL -lXrandr -lXxf86vm -lXi",
+        ],
+        "@io_bazel_rules_go//go/platform:linux": [
+            "-lglfw",
+        ],
+        "@io_bazel_rules_go//go/platform:windows": [
+            "-lglfw3dll -lopengl32 -lgdi32",
+        ],
+        "//conditions:default": [],
+    }),
+    copts = select({
+        "@io_bazel_rules_go//go/platform:windows": [
+            "-DGLFW_DLL",
+        ],
+        "//conditions:default": [],
+    }),
+    importmap = "github.com/example/project/vendor/github.com/go-gl/glfw/v3.0/glfw",
+    importpath = "github.com/go-gl/glfw/v3.0/glfw",
+    visibility = ["//visibility:public"],
+)

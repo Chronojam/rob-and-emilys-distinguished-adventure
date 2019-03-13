@@ -1,0 +1,20 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_binary", "go_library")
+
+go_library(
+    name = "go_default_library",
+    srcs = ["main.go"],
+    importmap = "github.com/example/project/vendor/engo.io/engo/demos/blendmap",
+    importpath = "engo.io/engo/demos/blendmap",
+    visibility = ["//visibility:private"],
+    deps = [
+        "//vendor/engo.io/ecs:go_default_library",
+        "//vendor/engo.io/engo:go_default_library",
+        "//vendor/engo.io/engo/common:go_default_library",
+    ],
+)
+
+go_binary(
+    name = "blendmap",
+    embed = [":go_default_library"],
+    visibility = ["//visibility:public"],
+)

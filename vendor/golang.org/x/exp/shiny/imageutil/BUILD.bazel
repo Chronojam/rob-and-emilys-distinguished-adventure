@@ -1,0 +1,15 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "go_default_library",
+    srcs = ["imageutil.go"],
+    importmap = "github.com/example/project/vendor/golang.org/x/exp/shiny/imageutil",
+    importpath = "golang.org/x/exp/shiny/imageutil",
+    visibility = ["//visibility:public"],
+)
+
+go_test(
+    name = "go_default_test",
+    srcs = ["imageutil_test.go"],
+    embed = [":go_default_library"],
+)

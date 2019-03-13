@@ -1,0 +1,36 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "go_default_library",
+    srcs = [
+        "buffer.go",
+        "color.go",
+        "decode.go",
+        "doc.go",
+        "encode.go",
+        "iconvg.go",
+        "rasterizer.go",
+    ],
+    importmap = "github.com/example/project/vendor/golang.org/x/exp/shiny/iconvg",
+    importpath = "golang.org/x/exp/shiny/iconvg",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//vendor/golang.org/x/exp/shiny/iconvg/internal/gradient:go_default_library",
+        "//vendor/golang.org/x/image/math/f32:go_default_library",
+        "//vendor/golang.org/x/image/math/f64:go_default_library",
+        "//vendor/golang.org/x/image/vector:go_default_library",
+    ],
+)
+
+go_test(
+    name = "go_default_test",
+    srcs = [
+        "buffer_test.go",
+        "decode_test.go",
+        "encode_test.go",
+        "example_test.go",
+    ],
+    data = glob(["testdata/**"]),
+    embed = [":go_default_library"],
+    deps = ["//vendor/golang.org/x/image/math/f32:go_default_library"],
+)

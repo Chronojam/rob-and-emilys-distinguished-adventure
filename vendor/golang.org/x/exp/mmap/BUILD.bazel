@@ -1,0 +1,21 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "go_default_library",
+    srcs = [
+        "mmap_other.go",
+        "mmap_unix.go",
+        "mmap_windows.go",
+        "mmap_windows_386.go",
+        "mmap_windows_amd64.go",
+    ],
+    importmap = "github.com/example/project/vendor/golang.org/x/exp/mmap",
+    importpath = "golang.org/x/exp/mmap",
+    visibility = ["//visibility:public"],
+)
+
+go_test(
+    name = "go_default_test",
+    srcs = ["mmap_test.go"],
+    embed = [":go_default_library"],
+)

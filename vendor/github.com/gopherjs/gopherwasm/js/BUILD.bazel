@@ -1,0 +1,24 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "go_default_library",
+    srcs = [
+        "callback.go",
+        "doc.go",
+        "js_notwasm.go",
+    ],
+    importmap = "github.com/example/project/vendor/github.com/gopherjs/gopherwasm/js",
+    importpath = "github.com/gopherjs/gopherwasm/js",
+    visibility = ["//visibility:public"],
+    deps = ["//vendor/github.com/gopherjs/gopherjs/js:go_default_library"],
+)
+
+go_test(
+    name = "go_default_test",
+    srcs = [
+        "func_test.go",
+        "js_test.go",
+        "testmain_test.go",
+    ],
+    embed = [":go_default_library"],
+)

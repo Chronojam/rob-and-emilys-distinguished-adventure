@@ -1,0 +1,28 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "go_default_library",
+    srcs = [
+        "sdl_ttf.go",
+        "sdl_ttf_cgo.go",
+        "sdl_ttf_wrapper.h",
+    ],
+    cgo = True,
+    clinkopts = select({
+        "@io_bazel_rules_go//go/platform:windows": [
+            "-lSDL2 -lSDL2_ttf",
+        ],
+        "//conditions:default": [],
+    }),
+    importmap = "github.com/example/project/vendor/github.com/veandco/go-sdl2/ttf",
+    importpath = "github.com/veandco/go-sdl2/ttf",
+    visibility = ["//visibility:public"],
+    deps = ["//vendor/github.com/veandco/go-sdl2/sdl:go_default_library"],
+)
+
+go_test(
+    name = "go_default_test",
+    srcs = ["sdl_ttf_test.go"],
+    embed = [":go_default_library"],
+    deps = ["//vendor/github.com/veandco/go-sdl2/sdl:go_default_library"],
+)

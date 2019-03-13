@@ -1,0 +1,13 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "go_default_library",
+    srcs = ["decode_notjs.go"],
+    importmap = "github.com/example/project/vendor/engo.io/engo/common/internal/decode/mp3",
+    importpath = "engo.io/engo/common/internal/decode/mp3",
+    visibility = ["//vendor/engo.io/engo/common:__subpackages__"],
+    deps = [
+        "//vendor/engo.io/engo/common/internal/decode/convert:go_default_library",
+        "@com_github_hajimehoshi_go_mp3//:go_default_library",
+    ],
+)

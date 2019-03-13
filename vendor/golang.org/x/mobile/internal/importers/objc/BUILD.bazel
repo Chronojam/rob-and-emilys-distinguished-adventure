@@ -1,0 +1,17 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "go_default_library",
+    srcs = ["objc.go"],
+    importmap = "github.com/example/project/vendor/golang.org/x/mobile/internal/importers/objc",
+    importpath = "golang.org/x/mobile/internal/importers/objc",
+    visibility = ["//vendor/golang.org/x/mobile:__subpackages__"],
+    deps = ["//vendor/golang.org/x/mobile/internal/importers:go_default_library"],
+)
+
+go_test(
+    name = "go_default_test",
+    srcs = ["objc_test.go"],
+    embed = [":go_default_library"],
+    deps = ["//vendor/golang.org/x/mobile/internal/importers:go_default_library"],
+)

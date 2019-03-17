@@ -9,7 +9,7 @@
 
 [[projects]]
   name = "engo.io/engo"
-  packages = [".","math"]
+  packages = [".","common","common/internal/decode/convert","common/internal/decode/mp3","common/internal/decode/vorbis","common/internal/decode/wav","math"]
   revision = "0bdf23d208d068c9e8f1a7547b6af5dc9083a7e7"
   version = "v1.0.3"
 
@@ -32,6 +32,11 @@
   version = "v0.0.1"
 
 [[projects]]
+  name = "github.com/Noofbiz/tmx"
+  packages = ["."]
+  revision = "c9ede7f431ca1a231c7b18bf7d39f08c76a71e5d"
+
+[[projects]]
   name = "github.com/engoengine/math"
   packages = ["."]
   revision = "24dd0f3aa71b1243e6c4f0fce28811c028c2707c"
@@ -51,6 +56,18 @@
 
 [[projects]]
   branch = "master"
+  name = "github.com/go-gl/mathgl"
+  packages = ["mgl32"]
+  revision = "cdf14b6b8f8a4a1bfb003dd5119205c5f711d85a"
+
+[[projects]]
+  branch = "master"
+  name = "github.com/golang/freetype"
+  packages = [".","raster","truetype"]
+  revision = "e2365dfdc4a05e4b8299a783240d4a7d5a65d4e4"
+
+[[projects]]
+  branch = "master"
   name = "github.com/gopherjs/gopherjs"
   packages = ["js"]
   revision = "847fc94819f9d5a4e7154e2203b36f6dbace6f48"
@@ -60,6 +77,42 @@
   packages = ["js"]
   revision = "f5a54963d451109f20622db5b6a055569ec6b4c6"
   version = "v1.1.0"
+
+[[projects]]
+  name = "github.com/hajimehoshi/go-mp3"
+  packages = [".","internal/bits","internal/consts","internal/frame","internal/frameheader","internal/huffman","internal/imdct","internal/maindata","internal/sideinfo"]
+  revision = "90191ee719ddc192865cd96bdc8013ef1ed6dbea"
+  version = "v0.1.1"
+
+[[projects]]
+  name = "github.com/hajimehoshi/oto"
+  packages = [".","internal/mux"]
+  revision = "8fc782a1384d026c99d090ea651eff8304eeb931"
+  version = "v0.3.1"
+
+[[projects]]
+  name = "github.com/jfreymuth/oggvorbis"
+  packages = ["."]
+  revision = "9504566bd4b4afd13a5e5acb770934d58c87028a"
+  version = "v1.0.0"
+
+[[projects]]
+  name = "github.com/jfreymuth/vorbis"
+  packages = ["."]
+  revision = "2f16367d086d143e8e946cc5ee24618147d673dc"
+  version = "v1.0.0"
+
+[[projects]]
+  branch = "master"
+  name = "github.com/srwiley/oksvg"
+  packages = ["."]
+  revision = "ccbc7673cdf3f85a116e4f1bf91c993f741f9e30"
+
+[[projects]]
+  branch = "master"
+  name = "github.com/srwiley/rasterx"
+  packages = ["."]
+  revision = "696f7edb7a7e4e799b36c09994a73877d92b9637"
 
 [[projects]]
   name = "github.com/veandco/go-sdl2"
@@ -83,29 +136,41 @@
   branch = "master"
   name = "golang.org/x/exp"
   packages = ["shiny/driver/gldriver","shiny/driver/internal/drawer","shiny/driver/internal/errscreen","shiny/driver/internal/event","shiny/driver/internal/lifecycler","shiny/driver/internal/win32","shiny/driver/internal/x11key","shiny/screen"]
-  revision = "4b39c73a6495538662b1d2fa1c2eea61046ff476"
+  revision = "860388717186a94044038508fceb5b378f699ca8"
 
 [[projects]]
   branch = "master"
   name = "golang.org/x/image"
-  packages = ["math/f64"]
+  packages = ["colornames","font","math/f32","math/f64","math/fixed","vector"]
   revision = "0694c2d4d067f97ebef574d63a763ee8ab559da7"
 
 [[projects]]
   branch = "master"
   name = "golang.org/x/mobile"
   packages = ["app","app/internal/callfn","asset","event/key","event/lifecycle","event/mouse","event/paint","event/size","event/touch","geom","gl","internal/mobileinit"]
-  revision = "a4d62f3683ec09c4d2e7c233aa702477717af4ca"
+  revision = "cde3d952bcf08a495f3eb8ec8c42e1c642a9da36"
+
+[[projects]]
+  branch = "master"
+  name = "golang.org/x/net"
+  packages = ["html","html/atom","html/charset"]
+  revision = "9f648a60d9775ef5c977e7669d1673a7a67bef33"
 
 [[projects]]
   branch = "master"
   name = "golang.org/x/sys"
   packages = ["windows"]
-  revision = "fead79001313d15903fb4605b4a1b781532cd93e"
+  revision = "a2f829d7f35f2ed1c3520c553a6226495455cae0"
+
+[[projects]]
+  name = "golang.org/x/text"
+  packages = ["encoding","encoding/charmap","encoding/htmlindex","encoding/internal","encoding/internal/identifier","encoding/japanese","encoding/korean","encoding/simplifiedchinese","encoding/traditionalchinese","encoding/unicode","internal/gen","internal/tag","internal/utf8internal","language","runes","transform","unicode/cldr"]
+  revision = "f21a4dfb5e38f5895301dc265a8def02365cc3d0"
+  version = "v0.3.0"
 
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "93f7f9e46cd1be0eea14cace7da4c237932f4867d749363a7c18269990f28202"
+  inputs-digest = "9fcb2860a8374e51bca8ba765d8a252f963514df4e6614b3c4c141f8c2581180"
   solver-name = "gps-cdcl"
   solver-version = 1

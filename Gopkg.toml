@@ -19,12 +19,7 @@
 # [[override]]
 #  name = "github.com/x/y"
 #  version = "2.4.0"
-
-
-[[constraint]]
-  name = "engo.io/ecs"
-  version = "1.0.2"
-
-[[constraint]]
-  name = "engo.io/engo"
-  version = "1.0.3"
+#
+[[override]]
+    name = "github.com/Noofbiz/tmx"
+    revision = "c9ede7f431ca1a231c7b18bf7d39f08c76a71e5d"

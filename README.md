@@ -2,7 +2,7 @@ deps
 
 Ubuntu/Debian
 ```
-sudo apt-get install libasound2-dev libglu1-mesa-dev freeglut3-dev mesa-common-dev xorg-dev libgl1-mesa-dev
+sudo apt-get install libasound2-dev libglu1-mesa-dev freeglut3-dev mesa-common-dev xorg-dev libgl1-mesa-dev libwayland-dev
 ```
 
 Windows

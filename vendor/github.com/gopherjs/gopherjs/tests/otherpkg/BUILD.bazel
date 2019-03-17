@@ -1,9 +1,0 @@
-load("@io_bazel_rules_go//go:def.bzl", "go_library")
-
-go_library(
-    name = "go_default_library",
-    srcs = ["otherpkg.go"],
-    importmap = "github.com/example/project/vendor/github.com/gopherjs/gopherjs/tests/otherpkg",
-    importpath = "github.com/gopherjs/gopherjs/tests/otherpkg",
-    visibility = ["//visibility:public"],
-)

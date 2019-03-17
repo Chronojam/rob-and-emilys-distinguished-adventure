@@ -1,9 +1,0 @@
-load("@io_bazel_rules_go//go:def.bzl", "go_library")
-
-go_library(
-    name = "go_default_library",
-    srcs = ["ef.go"],
-    importmap = "github.com/example/project/vendor/golang.org/x/exp/apidiff/testdata/exported_fields",
-    importpath = "golang.org/x/exp/apidiff/testdata/exported_fields",
-    visibility = ["//visibility:public"],
-)

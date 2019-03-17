@@ -15,12 +15,10 @@ type PlayerMovementSystem struct {
 }
 
 func (p *PlayerMovementSystem) New(w *ecs.World) {
+	/*engo.Mailbox.Listen("CollisionMessage", func(message engo.Message) {
+		log.Println("collision")
+	})*/
 }
-
-/*func (p *PlayerMovementSystem) AddByInterface(i ecs.Identifier) {
-	obj := o.(PlayerAble)
-	p.Set(obj.GetBasicEntity(), obj.GetComponentA())
-}*/
 
 // Add - Only call me once per scene with the components to the player we want to move
 // with the camera.

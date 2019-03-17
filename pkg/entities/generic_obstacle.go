@@ -3,14 +3,11 @@ package entities
 import (
 	"engo.io/ecs"
 	"engo.io/engo/common"
-	"github.com/chronojam/hazard/pkg/components"
 )
 
-type Player struct {
+type Obstacle struct {
 	ecs.BasicEntity
-	common.RenderComponent
 	common.SpaceComponent
+	common.RenderComponent
 	common.CollisionComponent
-
-	components.PlayerStateComponent
 }

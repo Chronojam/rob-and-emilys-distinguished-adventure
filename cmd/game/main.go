@@ -8,9 +8,10 @@ import (
 func main() {
 	opts := engo.RunOptions{
 		Title:          "Hazard",
-		Width:          800,
-		Height:         800,
+		Width:          1600,
+		Height:         1600,
 		StandardInputs: true,
+		GlobalScale:    engo.Point{2, 2},
 	}
 	engo.Run(opts, &cruiser.Scene{})
 }

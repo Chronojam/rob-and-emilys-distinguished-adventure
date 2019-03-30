@@ -1,39 +1,18 @@
 package components
 
-import (
-	"engo.io/engo/common"
-)
-
 // PlayerState is the state of the player
 // and is a component.
 type PlayerStateComponent struct {
-	// Speed represents the speed at which this player can move.
-	Speed float32
+	Speed  float32
+	Health int
 
-	// A map of weapons => ammo count
-	WeaponInventory []*Weapon
-	CurrentWeapon   *Weapon
+	Inventory map[string]interface{}
 }
 
 func (p *PlayerStateComponent) GetPlayerState() *PlayerStateComponent {
 	return p
 }
 
-type PlayerState interface {
+type PlayerStateFace interface {
 	GetPlayerState() *PlayerStateComponent
-}
-
-type Weapon struct {
-	// Whats the name?
-	Name string
-
-	// Texture of the player with the given weapon.
-	PlayerTexture *common.Texture
-
-	// How much ammo does it have?
-	AmmoCount int
-
-	// Ammo clips
-	AmmoInClip  int
-	AmmoClipMax int
 }

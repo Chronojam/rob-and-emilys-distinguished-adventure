@@ -1,7 +1,6 @@
-package entities
+package player
 
 import (
-	"fmt"
 	"log"
 
 	"engo.io/ecs"
@@ -13,8 +12,8 @@ import (
 
 const (
 	// Starting Defaults
-	PlayerSizeX = 35 //70
-	PlayerSizeY = 43 //86
+	PlayerSizeX = 16 //70
+	PlayerSizeY = 16 //86
 	PlayerSpeed = 5
 )
 
@@ -30,37 +29,29 @@ type Player struct {
 
 // NewPlayer returns a new player entity. It is the callers responsibilty to set position
 // etc to sensible defaults.
-func NewPlayer(prefix string) Player {
-	Weapons := []*components.Weapon{}
-	for _, s := range []string{"stand", "gun", "machine", "silencer", "reload"} {
-		tex, err := common.LoadedSprite(fmt.Sprintf("sprites/%s_%s.png", prefix, s))
-		if err != nil {
-			log.Fatalf("Unable to load texture: " + err.Error())
-		}
-		Weapons = append(Weapons, &components.Weapon{
-			Name:          s,
-			PlayerTexture: tex,
-			AmmoCount:     0,
-		})
+func New(prefix string) Player {
+	defaultTexture, err := common.LoadedSprite("textures/dev_16x16.png")
+	if err != nil {
+		log.Println("Unable to load texture: " + err.Error())
 	}
 
 	entity := Player{BasicEntity: ecs.NewBasic()}
 	entity.SpaceComponent = common.SpaceComponent{
-		Position: engo.Point{10, 10},
+		Position: engo.Point{0, 0},
 		Width:    PlayerSizeX,
 		Height:   PlayerSizeY,
 	}
 	entity.PlayerStateComponent = components.PlayerStateComponent{
-		Speed:           PlayerSpeed,
-		WeaponInventory: Weapons,
-		CurrentWeapon:   Weapons[0],
+		Speed:     PlayerSpeed,
+		Health:    100,
+		Inventory: map[string]interface{}{},
 	}
 	entity.RenderComponent = common.RenderComponent{
-		Drawable: Weapons[0].PlayerTexture,
+		Drawable: defaultTexture,
 		Scale:    engo.Point{1, 1},
 	}
 	entity.CollisionComponent = common.CollisionComponent{
-		Main: v1.CollisionsPlayer,
+		Main: v1.CollisionsPlayer | v1.CollisionsPlayerPickup,
 	}
 
 	return entity
